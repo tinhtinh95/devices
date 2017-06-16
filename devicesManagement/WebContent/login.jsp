@@ -15,7 +15,13 @@
   <center>
   <div class="container">
     <h1>Login</h1>
-    <form id="loginform" name="loginform" method="post">
+    <%
+        if(request.getParameter("msg")!=null){
+        	out.print("<div style=\"width:400px;height:50px\" class=\"alert alert-danger\" role=\"alert\">Wrong username or password</div>");
+        }
+    
+    %>
+    <form id="loginform" action="<%=request.getContextPath() %>/login" name="loginform" method="post">
       <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" class="form-control" id="username" placeholder="Your Username" name="username" 
@@ -31,7 +37,6 @@
   </div>
   </center>
   </body>
-  </html>
   <script type="text/javascript">
               $(document).ready(function(){
             $("#loginform").validate({
@@ -70,5 +75,6 @@ val.value = tst;
 }
 
 </script>
+  </html>
          
 

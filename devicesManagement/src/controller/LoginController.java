@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.AccountDAO;
 import entities.Account;
+import library.LibStringMd5;
 
 /**
  * Servlet implementation class LoginController
@@ -41,8 +42,7 @@ public class LoginController extends HttpServlet {
 		AccountDAO acDAO=new AccountDAO();
 		if(request.getParameter("submit")!=null){
 			String username=request.getParameter("username");
-			String password=request.getParameter("password");
-			System.out.println(username + " " + password);
+			String password=LibStringMd5.LibMd5(request.getParameter("password"));
 			Account AccountLogin=acDAO.checkLogin(username, password);
 			HttpSession session=request.getSession();
 			if(AccountLogin!=null){
